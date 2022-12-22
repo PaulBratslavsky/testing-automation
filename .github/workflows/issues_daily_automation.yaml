@@ -1,0 +1,25 @@
+name: 'Daily Cron - 00:00'
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+permissions:
+  issues: write
+  statuses: read
+
+jobs:
+  cron-tasks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check for inactive issues that have been inactive
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'close-issues'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          labels: 'status: inactive'
+          inactive-day: 1
+          close-reason: 'completed'
+          body: |
+            Hello!
+            This issue has been inactiver for a while.
