@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: '*/10 * * * *'
 
+
 permissions:
   issues: write
   statuses: read
@@ -16,7 +17,7 @@ jobs:
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'close-issues'
-          token: ${{ secrets.GITHUB_TOKEN }}
+#           token: ${{ secrets.GITHUB_TOKEN }}
           labels: 'status: inactive'
           inactive-day: 1
           close-reason: 'completed'
